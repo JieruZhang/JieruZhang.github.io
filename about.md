@@ -1,2 +1,0 @@
-# About me  
-I am Jieru Zhang, an MSc student at the University of Edinburgh, major in NLP. I got my Bachelor at Tianjin University in China, major in Software Engineering. I am interested in NMT and LM. For more information, please refer to my CV and Github.
