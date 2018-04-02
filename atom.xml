@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jieru Zhang</title>
+  
+  <subtitle>Inspiration is for amateurs, the rest of us just show up and get to work. -- chuck close</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://jieruzhang.com/"/>
+  <updated>2018-03-30T18:53:05.547Z</updated>
+  <id>http://jieruzhang.com/</id>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>info</title>
+    <link href="http://jieruzhang.com/2018/03/30/info/"/>
+    <id>http://jieruzhang.com/2018/03/30/info/</id>
+    <published>2018-03-30T18:37:19.000Z</published>
+    <updated>2018-03-30T18:53:05.547Z</updated>
+    
+    <content type="html"><![CDATA[<p>I am Jieru Zhang, an MSc student at the University of Edinburgh, major in NLP. I got my Bachelor at Tianjin University in China, major in Software Engineering. I am interested in NMT and LM. For more information, please refer to my CV and Github. </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;I am Jieru Zhang, an MSc student at the University of Edinburgh, major in NLP. I got my Bachelor at Tianjin University in China, major in
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
