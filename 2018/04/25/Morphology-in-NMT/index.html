@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Morphology in NMT | Jieru Zhang'</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/." class="title">Jieru Zhang'</a><span class="subtitle">Inspiration is for amateurs, the rest of us just show up and get to work. -- Chuck Close</span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item active">Home</a><a href="/archives" class="sidebar-nav-item">Archives</a><a href="/about" class="sidebar-nav-item">About me</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>Morphology in NMT</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2018-04-25</div></div></div><article><div class="container post"><h3 id="The-Morphology-in-NMT"><a href="#The-Morphology-in-NMT" class="headerlink" title="The Morphology in NMT"></a>The Morphology in NMT</h3><p>Morphology in NMT is a very open research area. Basically, it acts as the inflections of a word, and has the following properties:  </p>
+<ul>
+<li>Productive</li>
+<li>Phonology-related</li>
+<li>Languages-related</li>
+<li>Reduplication</li>
+<li>Negation</li>
+<li>Derivational(Affix)</li>
+<li>Compounding  </li>
+</ul>
+<p><strong>Basic idea:</strong> Considering the specific morphology of different languages.</p>
+<h4 id="Problem-1-Morphology-segmentation"><a href="#Problem-1-Morphology-segmentation" class="headerlink" title="Problem 1: Morphology segmentation."></a>Problem 1: Morphology segmentation.</h4><p>Open-vocabulary model is not enough, because: </p>
+<ul>
+<li>Subword or character-level segmentation might not decide the right boundary of morphology.  </li>
+<li>Two forms of morphology might be similar.</li>
+<li>Different languages have different morphology.  <h4 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions:"></a>Solutions:</h4><strong>Make use of the existing resources:</strong>  </li>
+<li>Dictionary with inflections table, </li>
+<li>Lists with stems and affixes,  </li>
+<li>Rule-based morphological analyze with FSM.</li>
+</ul>
+<p><strong>Morphology on source side:</strong>  </p>
+<ol>
+<li>split morpheme boundaries for original input =&gt; BPE NMT. <strong>or</strong></li>
+<li>lemmas + pseduwords to represent original input. <strong>or</strong></li>
+<li>original word + lemma as input.</li>
+</ol>
+<p><strong>Morphology on target side:</strong>  </p>
+<ol>
+<li>Two steps: predict target lemmas + predict target inflections with FSM.  <strong>or</strong></li>
+<li>Neural inflection generation. (encoder-decoder structure like NMT).</li>
+</ol>
+<h4 id="Problem-2-Grammatically-information-missing-in-source-side"><a href="#Problem-2-Grammatically-information-missing-in-source-side" class="headerlink" title="Problem 2: Grammatically information missing in source side."></a>Problem 2: Grammatically information missing in source side.</h4><p>Grammatically information could miss from source language(poor-morphology language like English), e.g. politeness/formality, tense, evidentiality, domain adaption, …</p>
+<h4 id="Solution-Side-constraints"><a href="#Solution-Side-constraints" class="headerlink" title="Solution:  Side constraints."></a>Solution:  Side constraints.</h4><p><strong>Core idea:</strong> add extra information to the original input, these additional parts represent the missing information about politeness, tense, etc. Therefore, we control the NMT output by providing the extra information in input.</p>
+<h4 id="Problem-3-Agreement-problems-or-say-the-long-term-dependencies"><a href="#Problem-3-Agreement-problems-or-say-the-long-term-dependencies" class="headerlink" title="Problem 3: Agreement problems, or say the long-term dependencies."></a>Problem 3: Agreement problems, or say the long-term dependencies.</h4><p>Word-level –&gt; subword-level –&gt; character-level, the distance between tow dependent words becomes longer and longer, Which causes the <em>Long-term dependency problems</em>.  </p>
+<h4 id="Solution-BPE-NMT-model"><a href="#Solution-BPE-NMT-model" class="headerlink" title="Solution: BPE NMT model."></a>Solution: BPE NMT model.</h4><p><strong>Motivation:</strong> Word-level model could not solve open-vocabulary. Character-level suffers from long-term dependency like subject-verb agreement. BPE model is the compromise.<br><strong>Evluation:</strong> Contrastive translation pairs based on the LingEval97 dataset.</p>
+<h3 id="Glossary"><a href="#Glossary" class="headerlink" title="Glossary"></a><strong>Glossary</strong></h3><p><strong>Agreement:</strong> <em>“ a change in the form of a word depending on grammatical features of another word”</em> – Wikipedia<br><strong>Morphemes:</strong> smallest meaning-bearing unit in a language.<br>E.g. stem and affix are morphemes.</p>
+</div><!-- comment system--><div class="container"><hr></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:zhangjierumarsh@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="https://github.com/JieruZhang" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2018 <a href="/" rel="nofollow"></a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});
+</script></body></html>

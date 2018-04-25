@@ -6,10 +6,31 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jieruzhang.com/"/>
-  <updated>2018-03-30T18:53:05.547Z</updated>
+  <updated>2018-04-25T12:57:40.013Z</updated>
   <id>http://jieruzhang.com/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Morphology in NMT</title>
+    <link href="http://jieruzhang.com/2018/04/25/Morphology-in-NMT/"/>
+    <id>http://jieruzhang.com/2018/04/25/Morphology-in-NMT/</id>
+    <published>2018-04-25T10:07:58.000Z</published>
+    <updated>2018-04-25T12:57:40.013Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="The-Morphology-in-NMT"><a href="#The-Morphology-in-NMT" class="headerlink" title="The Morphology in NMT"></a>The Morphology in NMT</h3><p>Morphology in NMT is a very open research area. Basically, it acts as the inflections of a word, and has the following properties:  </p><ul><li>Productive</li><li>Phonology-related</li><li>Languages-related</li><li>Reduplication</li><li>Negation</li><li>Derivational(Affix)</li><li>Compounding  </li></ul><p><strong>Basic idea:</strong> Considering the specific morphology of different languages.</p><h4 id="Problem-1-Morphology-segmentation"><a href="#Problem-1-Morphology-segmentation" class="headerlink" title="Problem 1: Morphology segmentation."></a>Problem 1: Morphology segmentation.</h4><p>Open-vocabulary model is not enough, because: </p><ul><li>Subword or character-level segmentation might not decide the right boundary of morphology.  </li><li>Two forms of morphology might be similar.</li><li>Different languages have different morphology.  <h4 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions:"></a>Solutions:</h4><strong>Make use of the existing resources:</strong>  </li><li>Dictionary with inflections table, </li><li>Lists with stems and affixes,  </li><li>Rule-based morphological analyze with FSM.</li></ul><p><strong>Morphology on source side:</strong>  </p><ol><li>split morpheme boundaries for original input =&gt; BPE NMT. <strong>or</strong></li><li>lemmas + pseduwords to represent original input. <strong>or</strong></li><li>original word + lemma as input.</li></ol><p><strong>Morphology on target side:</strong>  </p><ol><li>Two steps: predict target lemmas + predict target inflections with FSM.  <strong>or</strong></li><li>Neural inflection generation. (encoder-decoder structure like NMT).</li></ol><h4 id="Problem-2-Grammatically-information-missing-in-source-side"><a href="#Problem-2-Grammatically-information-missing-in-source-side" class="headerlink" title="Problem 2: Grammatically information missing in source side."></a>Problem 2: Grammatically information missing in source side.</h4><p>Grammatically information could miss from source language(poor-morphology language like English), e.g. politeness/formality, tense, evidentiality, domain adaption, …</p><h4 id="Solution-Side-constraints"><a href="#Solution-Side-constraints" class="headerlink" title="Solution:  Side constraints."></a>Solution:  Side constraints.</h4><p><strong>Core idea:</strong> add extra information to the original input, these additional parts represent the missing information about politeness, tense, etc. Therefore, we control the NMT output by providing the extra information in input.</p><h4 id="Problem-3-Agreement-problems-or-say-the-long-term-dependencies"><a href="#Problem-3-Agreement-problems-or-say-the-long-term-dependencies" class="headerlink" title="Problem 3: Agreement problems, or say the long-term dependencies."></a>Problem 3: Agreement problems, or say the long-term dependencies.</h4><p>Word-level –&gt; subword-level –&gt; character-level, the distance between tow dependent words becomes longer and longer, Which causes the <em>Long-term dependency problems</em>.  </p><h4 id="Solution-BPE-NMT-model"><a href="#Solution-BPE-NMT-model" class="headerlink" title="Solution: BPE NMT model."></a>Solution: BPE NMT model.</h4><p><strong>Motivation:</strong> Word-level model could not solve open-vocabulary. Character-level suffers from long-term dependency like subject-verb agreement. BPE model is the compromise.<br><strong>Evluation:</strong> Contrastive translation pairs based on the LingEval97 dataset.</p><h3 id="Glossary"><a href="#Glossary" class="headerlink" title="Glossary"></a><strong>Glossary</strong></h3><p><strong>Agreement:</strong> <em>“ a change in the form of a word depending on grammatical features of another word”</em> – Wikipedia<br><strong>Morphemes:</strong> smallest meaning-bearing unit in a language.<br>E.g. stem and affix are morphemes.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;The-Morphology-in-NMT&quot;&gt;&lt;a href=&quot;#The-Morphology-in-NMT&quot; class=&quot;headerlink&quot; title=&quot;The Morphology in NMT&quot;&gt;&lt;/a&gt;The Morphology in NMT&lt;/
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>info</title>
